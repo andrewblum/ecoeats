@@ -1,6 +1,6 @@
 import './App.css';
 import Homepage from './Homepage.jsx';
-import Login from './Login.jsx';
+import Login from './components/app/Login.jsx';
 import ErrorPage from './ErrorPage.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

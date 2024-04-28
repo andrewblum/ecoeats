@@ -1,5 +1,11 @@
 import { Button } from '@/components/ui/button';
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import {
   Card,
   CardContent,
   CardDescription,
@@ -40,7 +46,38 @@ function FoodListItem({ id, name, expiry, image, createdAt }) {
         </CardHeader>
         <CardContent>
           {/* TODO: add AI buttons */}
-          <div>AI Buttons!</div>
+          <div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline">1</Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>How to tell if your food is actually bad</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline">2</Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>What to do with your food if it is bad</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline">3</Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Tips on how to keep this food fresh longer</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </CardContent>
       </div>
       <CardFooter>

@@ -1,10 +1,4 @@
-// main page showing list of foods, add a food button, log out, etc
-
 import FoodList from '@/components/app/FoodList';
-
-// function FoodList()
-
-// function FoodListItem()
 
 function Homepage() {
   return (
