@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { Calendar } from '@/components/ui/calendar';
+import { useState } from 'react';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -39,6 +40,7 @@ const formSchema = z.object({
 });
 
 function AddFoodModal() {
+  const [open, setOpen] = useState(false);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,13 +52,25 @@ function AddFoodModal() {
   });
 
   function onSubmit(values) {
-    // TODO: call api
-    console.log(values);
+    const data = {
+      name: values.name,
+      content: values.content,
+      userId: 1,
+      expirationDate: values.expirationDate
+    }
+    fetch('/api/food', {
+      method: 'POST', 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+    })
     form.reset();
+    setOpen(false)
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       {/* TODO: Determine placement */}
       <DialogTrigger className="flex justify-center items-center text-white bg-tiffany-blue w-[56px] h-[56px] rounded-full drop-shadow-xl absolute bottom-10 right-10">
         <Plus size={44} />

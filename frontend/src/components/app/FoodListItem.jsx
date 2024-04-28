@@ -15,9 +15,9 @@ import AIFoodTipModal from './AIFoodTipModal';
 const ONE_WEEK = 604800000;
 const THREE_DAYS = 172800000;
 
-function FoodListItem({ id, name, expiry, image, createdAt }) {
+function FoodListItem({ id, name, expirationDate, image }) {
   const today = new Date();
-  const expireDate = new Date(expiry);
+  const expireDate = new Date(expirationDate);
   const timeToExpire = expireDate - today;
   let color = '';
 
@@ -31,17 +31,22 @@ function FoodListItem({ id, name, expiry, image, createdAt }) {
     color = 'bg-tea-green';
   }
 
+  const handleDeleteFood = () => {
+    fetch(`/api/food/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
   return (
     <Card className="flex flex-row relative overflow-hidden h-[144px]">
       <div className={cn('relative w-[32px]', color)} alt="expiry color" />
-      <div className="w-[144px] h-[144px] bg-gray-100" alt="food image" />
+      <img src={image} className="w-[144px] h-[144px] bg-gray-100" alt="food image" />
       <div className="flex flex-col">
         <CardHeader>
           <CardTitle>{name}</CardTitle>
-          <CardDescription>Expires: {expiry}</CardDescription>
+          <CardDescription>Expires: {expirationDate}</CardDescription>
         </CardHeader>
         <CardContent>
-          {/* TODO: add AI buttons */}
           <div>
             <Dialog>
               <DialogTrigger>
@@ -80,7 +85,7 @@ function FoodListItem({ id, name, expiry, image, createdAt }) {
         </CardContent>
       </div>
       <CardFooter>
-        <Button variant="destructive">
+        <Button variant="destructive" onClick={handleDeleteFood}>
           <Trash2 />
         </Button>
       </CardFooter>

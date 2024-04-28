@@ -8,7 +8,6 @@ import Markdown from 'react-markdown';
 
 function AIFoodTipModal({ title }) {
   const [response, setResponse] = useState(undefined);
-  console.log(response)
 
   useEffect(() => {
     const baseUrl = '/api/query-ai';

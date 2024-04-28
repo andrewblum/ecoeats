@@ -18,10 +18,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  fetch('/api/json-test')
-    .then((resp) => resp.json())
-    .then((data) => console.log(data));
-
   return (
     <>
       <RouterProvider router={router} />
