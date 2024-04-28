@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/json-test', function(req, res) { 
+app.get('/api/json-test', function(req, res) { 
   res.json({ 
     number: 1, 
     name: 'ecoeats', 
