@@ -22,7 +22,7 @@ model Food {
   id        Int     @id @default(autoincrement())
   name     String
   content   String?
-  expirationDate String // prisma doesn't support dates without time zone, hence using a string, YYYYMMDD
+  expirationDate String // prisma doesn't support dates without time zone, hence using a string, YYYY-MM-DD
   user    User    @relation(fields: [userId], references: [id])
   userId  Int
 }
