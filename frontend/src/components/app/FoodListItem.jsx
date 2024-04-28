@@ -18,33 +18,31 @@ function FoodListItem({ id, name, expiry, image, createdAt }) {
   const expireDate = new Date(expiry);
   const timeToExpire = expireDate - today;
   let color = '';
-  console.log({ name, timeToExpire });
 
   if (timeToExpire <= 0) {
-    console.log('expired');
     color = 'bg-tangerine';
   } else if (timeToExpire <= THREE_DAYS) {
-    console.log('in three days');
     color = 'bg-light-orange';
   } else if (timeToExpire <= ONE_WEEK) {
-    console.log('in one week');
     color = 'bg-vanilla';
   } else {
-    console.log('good');
     color = 'bg-tea-green';
   }
 
   return (
     <Card className="flex flex-row relative overflow-hidden h-[144px]">
-      <div className={cn('relative w-[32px]', color)} />
-      <div className="w-[144px] h-[144px] bg-gray-100" />
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-        <CardDescription>Expires: {expiry}</CardDescription>
+      <div className={cn('relative w-[32px]', color)} alt="expiry color" />
+      <div className="w-[144px] h-[144px] bg-gray-100" alt="food image" />
+      <div className="flex flex-col">
+        <CardHeader>
+          <CardTitle>{name}</CardTitle>
+          <CardDescription>Expires: {expiry}</CardDescription>
+        </CardHeader>
         <CardContent>
+          {/* TODO: add AI buttons */}
           <div>AI Buttons!</div>
         </CardContent>
-      </CardHeader>
+      </div>
       <CardFooter>
         <Button variant="destructive">
           <Trash2 />

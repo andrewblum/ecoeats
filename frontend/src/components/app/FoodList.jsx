@@ -1,6 +1,7 @@
 import FoodListItem from '@/components/app/FoodListItem';
 
 function FoodList() {
+  // TODO: fetch foods for user id
   const items = [
     {
       id: '1',
@@ -33,8 +34,9 @@ function FoodList() {
   ];
 
   return (
-    <div>
-      <h2>List</h2>
+    <section>
+      {/* TODO: sorting */}
+      <div>Sort by: Expiration Date | Date Added</div>
       {items.map(({ id, name, expiry, image, createdAt }) => (
         <FoodListItem
           key={id}
@@ -44,7 +46,7 @@ function FoodList() {
           createdAt={createdAt}
         />
       ))}
-    </div>
+    </section>
   );
 }
 
