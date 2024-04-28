@@ -1,4 +1,5 @@
 import FoodListItem from '@/components/app/FoodListItem';
+import AddFoodModal from '@/components/app/AddFoodModal';
 
 function FoodList() {
   // TODO: fetch foods for user id
@@ -46,6 +47,7 @@ function FoodList() {
           createdAt={createdAt}
         />
       ))}
+      <AddFoodModal />
     </section>
   );
 }
