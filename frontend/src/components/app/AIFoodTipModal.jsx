@@ -1,5 +1,34 @@
-// modal for seeing:
-// 1 ) is the food ACTUALLy bad? how to tell if the food is bad from perplexity 
-// 2 ) if the food is actually bad, what are alternative uses i can use it for? (i e polish metal with expired ketchup)
-// 3 ) how to make the food last longer / storage tips 
-// launched via two bottons on FoodListItem
+import {
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { useState, useEffect } from 'react';
+
+function AIFoodTipModal({ title }) {
+  const [response, setResponse] = useState(undefined);
+
+  useEffect(() => {
+    const baseUrl = '/api/query-ai';
+    const params = new URLSearchParams({
+      prompt: title,
+    });
+    const urlWithParams = `${baseUrl}?${params.toString()}`;
+    fetch(urlWithParams)
+      .then((resp) => resp.json())
+      .then((data) => setResponse(data));
+  }, [title]);
+
+  return (
+    <DialogHeader>
+      <DialogTitle> {title} </DialogTitle>
+      {response ? (
+        <DialogDescription>{response.content}</DialogDescription>
+      ) : (
+        <div>Loading</div>
+      )}
+    </DialogHeader>
+  );
+}
+
+export default AIFoodTipModal;

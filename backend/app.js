@@ -78,6 +78,35 @@ app.delete(`/api/food/:id`, async (req, res) => {
   res.json(food)
 })
 
+app.get('/api/query-ai', async (req, res) => {
+    const prompt = req.query.prompt;
+    const apiKey = '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';
+    const apiUrl = 'https://api.perplexity.ai/chat/completions';
+  
+    const requestBody = {
+      model: 'sonar-medium-online',
+      messages: [
+        { role: 'user', content: prompt }
+      ]
+    };
+  
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(requestBody),
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json()
+    res.json({message: "ok", content: data.choices[0].message.content})
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -1,11 +1,5 @@
 import { Button } from '@/components/ui/button';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import {
   Card,
   CardContent,
   CardDescription,
@@ -13,8 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { Trash2 } from 'lucide-react';
+import AIFoodTipModal from './AIFoodTipModal';
 
 const ONE_WEEK = 604800000;
 const THREE_DAYS = 172800000;
@@ -47,36 +43,39 @@ function FoodListItem({ id, name, expiry, image, createdAt }) {
         <CardContent>
           {/* TODO: add AI buttons */}
           <div>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline">1</Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>How to tell if your food is actually bad</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline">2</Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>What to do with your food if it is bad</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline">3</Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Tips on how to keep this food fresh longer</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Dialog>
+              <DialogTrigger>
+                <Button variant="outline">1</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <AIFoodTipModal
+                  title={`How do I know if ${name} is bad`}
+                />
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger>
+                <Button variant="outline">2</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <AIFoodTipModal
+                  title={`What can I do with expired ${name}`}
+                />
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger>
+                <Button variant="outline">3</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <AIFoodTipModal
+                  title={`How can I keep ${name} fresh`}
+                  name={name}
+                />
+              </DialogContent>
+            </Dialog>
           </div>
         </CardContent>
       </div>
