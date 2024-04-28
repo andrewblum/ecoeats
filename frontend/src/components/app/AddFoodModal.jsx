@@ -72,7 +72,7 @@ function AddFoodModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {/* TODO: Determine placement */}
-      <DialogTrigger className="flex justify-center items-center text-white bg-tiffany-blue w-[56px] h-[56px] rounded-full drop-shadow-xl absolute bottom-10 right-10">
+      <DialogTrigger className="flex justify-center items-center text-white bg-tiffany-blue w-[56px] h-[56px] rounded-full drop-shadow-xl fixed bottom-10 right-10">
         <Plus size={44} />
       </DialogTrigger>
       <DialogContent>
