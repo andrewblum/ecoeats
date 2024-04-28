@@ -9,12 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "express": "^4.19.2"
   },
   "prettier": {
     "singleQuote": true
   },
   "devDependencies": {
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "prisma": "^5.13.0"
   }
 }
