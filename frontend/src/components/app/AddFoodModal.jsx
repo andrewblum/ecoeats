@@ -80,7 +80,10 @@ function AddFoodModal() {
           <DialogTitle>Add new item</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            className="flex flex-col gap-2"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
             <FormField
               control={form.control}
               name="name"
@@ -148,7 +151,7 @@ function AddFoodModal() {
                 </FormItem>
               )}
             />
-            <DialogFooter>
+            <DialogFooter className="mt-4">
               <Button type="submit">Submit</Button>
             </DialogFooter>
           </form>
