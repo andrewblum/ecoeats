@@ -1,9 +1,11 @@
 import FoodListItem from '@/components/app/FoodListItem';
 import AddFoodModal from '@/components/app/AddFoodModal';
 import { useState, useEffect } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 function FoodList() {
   const [food, setFood] = useState([]);
+  // const [orderByDate, setOrderByDate] = useState(false);
 
   // const items = [
   //   {
@@ -36,6 +38,33 @@ function FoodList() {
   //   },
   // ];
 
+  const createFoods = () => {
+    let foods = food;
+    // console.log(foods);
+    // if (orderByDate) {
+    //   foods = [...food].sort((a, b) => {
+    //     console.log({ a, b });
+    //     return new Date(a.createdAt) - new Date(b.createdAt);
+    //   });
+    // }
+    // console.log({
+    //   original: food.map((el) => el.name),
+    //   sorted: foods.map((el) => el.name),
+    // });
+
+    let foodsList = foods.map(({ id, name, expirationDate, content }) => (
+      <FoodListItem
+        key={id}
+        id={id}
+        name={name}
+        expirationDate={expirationDate}
+        image={content}
+      />
+    ));
+
+    return foodsList;
+  };
+
   useEffect(() => {
     fetch('/api/user/1/food')
       .then((resp) => resp.json())
@@ -44,17 +73,22 @@ function FoodList() {
 
   return (
     <section className="flex flex-col w-8/12 h-screen pb-10 gap-2">
-      {/* TODO: sorting */}
-      <div>Sort by: Expiration Date | Date Added</div>
-      {food.map(({ id, name, expirationDate, content }) => (
-        <FoodListItem
-          key={id}
-          id={id}
-          name={name}
-          expirationDate={expirationDate}
-          image={content}
-        />
-      ))}
+      <div>
+        {/* <Tabs defaultValue="account" className="w-[400px]">
+          <TabsList>
+            <TabsTrigger
+              value="expiration"
+              onClick={() => setOrderByDate(false)}
+            >
+              Expiration Date
+            </TabsTrigger>
+            <TabsTrigger value="dateAdded" onClick={() => setOrderByDate(true)}>
+              Date Added
+            </TabsTrigger>
+          </TabsList>
+        </Tabs> */}
+      </div>
+      {createFoods()}
       <AddFoodModal />
     </section>
   );
