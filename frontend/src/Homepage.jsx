@@ -5,7 +5,7 @@ function Homepage() {
   return (
     <>
       <Header />
-      <main className="container flex h-screen justify-center items-center">
+      <main className="flex h-screen justify-center items-center w-screen m-0 p-0">
         <FoodList />
       </main>
     </>

@@ -72,7 +72,8 @@ function FoodList() {
   }, []);
 
   return (
-    <section className="flex flex-col w-8/12 h-screen pb-10 gap-2">
+    <section className="flex flex-col w-8/12 h-screen pb-10 gap-4 max-w-[1080px]">
+      <div className="pt-2" />
       <div>
         {/* <Tabs defaultValue="account" className="w-[400px]">
           <TabsList>
@@ -90,6 +91,7 @@ function FoodList() {
       </div>
       {createFoods()}
       <AddFoodModal />
+      <div className="pb-10" />
     </section>
   );
 }
