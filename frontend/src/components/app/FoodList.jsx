@@ -90,7 +90,7 @@ function FoodList() {
         </Tabs> */}
       </div>
       {createFoods()}
-      <AddFoodModal />
+      <AddFoodModal setFood={setFood} />
       <div className="pb-10" />
     </section>
   );

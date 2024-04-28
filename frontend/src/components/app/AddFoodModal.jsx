@@ -39,7 +39,7 @@ const formSchema = z.object({
   content: z.string(),
 });
 
-function AddFoodModal() {
+function AddFoodModal({ setFood }) {
   const [open, setOpen] = useState(false);
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -64,9 +64,13 @@ function AddFoodModal() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    });
-    form.reset();
-    setOpen(false);
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        form.reset();
+        setFood((food) => [...food, data]);
+        setOpen(false);
+      });
   }
 
   return (
