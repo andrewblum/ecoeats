@@ -11,11 +11,12 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { Info, Lightbulb, Recycle, Trash2 } from 'lucide-react';
 import AIFoodTipModal from './AIFoodTipModal';
+import { useCallback } from 'react';
 
 const ONE_WEEK = 604800000;
 const THREE_DAYS = 172800000;
 
-function FoodListItem({ id, name, expirationDate, image }) {
+function FoodListItem({ id, name, expirationDate, image, setFood }) {
   const today = new Date();
   const expireDate = new Date(expirationDate);
   const timeToExpire = expireDate - today;
@@ -31,11 +32,13 @@ function FoodListItem({ id, name, expirationDate, image }) {
     color = 'bg-tea-green';
   }
 
-  const handleDeleteFood = () => {
+  const handleDeleteFood = useCallback(() => {
     fetch(`/api/food/${id}`, {
       method: 'DELETE',
-    });
-  };
+    }).then(() =>
+      setFood((food) => food.filter(({ id: foodId }) => id !== foodId)),
+    );
+  }, [id, setFood]);
 
   return (
     <Card className="flex flex-row relative overflow-hidden h-[144px] shrink-0 border-0 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all ease-out">

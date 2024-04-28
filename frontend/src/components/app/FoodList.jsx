@@ -59,6 +59,7 @@ function FoodList() {
         name={name}
         expirationDate={expirationDate}
         image={content}
+        setFood={setFood}
       />
     ));
 
