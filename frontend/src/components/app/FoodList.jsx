@@ -43,7 +43,7 @@ function FoodList() {
   }, []);
 
   return (
-    <section>
+    <section className="flex flex-col w-8/12 h-screen pb-10">
       {/* TODO: sorting */}
       <div>Sort by: Expiration Date | Date Added</div>
       {food.map(({ id, name, expirationDate, content }) => (

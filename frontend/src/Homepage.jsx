@@ -1,11 +1,14 @@
 import FoodList from '@/components/app/FoodList';
+import Header from '@/components/app/Header';
 
 function Homepage() {
   return (
-    <div>
-      <h1>Homepage</h1>
-      <FoodList />
-    </div>
+    <>
+      <Header />
+      <main className="container flex h-screen justify-center items-center">
+        <FoodList />
+      </main>
+    </>
   );
 }
 
