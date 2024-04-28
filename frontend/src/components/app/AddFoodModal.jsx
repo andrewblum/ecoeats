@@ -56,23 +56,23 @@ function AddFoodModal() {
       name: values.name,
       content: values.content,
       userId: 1,
-      expirationDate: values.expirationDate
-    }
+      expirationDate: values.expirationDate,
+    };
     fetch('/api/food', {
-      method: 'POST', 
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
     form.reset();
-    setOpen(false)
+    setOpen(false);
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {/* TODO: Determine placement */}
-      <DialogTrigger className="flex justify-center items-center text-white bg-tiffany-blue w-[56px] h-[56px] rounded-full drop-shadow-xl fixed bottom-10 right-10">
+      <DialogTrigger className="flex justify-center items-center text-white bg-tiffany-blue w-[56px] h-[56px] rounded-full drop-shadow-xl fixed bottom-10 right-10 hover:scale-125 transition-all">
         <Plus size={44} />
       </DialogTrigger>
       <DialogContent>
