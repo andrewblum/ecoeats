@@ -4,9 +4,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useState, useEffect } from 'react';
+import Markdown from 'react-markdown';
 
 function AIFoodTipModal({ title }) {
   const [response, setResponse] = useState(undefined);
+  console.log(response)
 
   useEffect(() => {
     const baseUrl = '/api/query-ai';
@@ -23,7 +25,9 @@ function AIFoodTipModal({ title }) {
     <DialogHeader>
       <DialogTitle> {title} </DialogTitle>
       {response ? (
-        <DialogDescription>{response.content}</DialogDescription>
+        <DialogDescription>
+          <Markdown>{response.content}</Markdown>
+        </DialogDescription>
       ) : (
         <div>Loading</div>
       )}
