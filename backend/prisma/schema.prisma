@@ -25,4 +25,5 @@ model Food {
   expirationDate String // prisma doesn't support dates without time zone, hence using a string, YYYY-MM-DD
   user    User    @relation(fields: [userId], references: [id])
   userId  Int
+  createdAt DateTime @default(now())
 }
