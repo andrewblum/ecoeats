@@ -34,54 +34,52 @@ function FoodListItem({ id, name, expirationDate, image }) {
   const handleDeleteFood = () => {
     fetch(`/api/food/${id}`, {
       method: 'DELETE',
-    })
-  }
+    });
+  };
 
   return (
     <Card className="flex flex-row relative overflow-hidden h-[144px]">
       <div className={cn('relative w-[32px]', color)} alt="expiry color" />
-      <img src={image} className="w-[144px] h-[144px] bg-gray-100" alt="food image" />
+      <img
+        src={image}
+        className="w-[144px] h-[144px] bg-gray-100"
+        alt="food image"
+      />
       <div className="flex flex-col">
         <CardHeader>
           <CardTitle>{name}</CardTitle>
           <CardDescription>Expires: {expirationDate}</CardDescription>
         </CardHeader>
         <CardContent>
-          <div>
-            <Dialog>
-              <DialogTrigger>
-                <Button variant="outline">1</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <AIFoodTipModal
-                  title={`How do I know if ${name} is bad`}
-                />
-              </DialogContent>
-            </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">1</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <AIFoodTipModal title={`How do I know if ${name} is bad?`} />
+            </DialogContent>
+          </Dialog>
 
-            <Dialog>
-              <DialogTrigger>
-                <Button variant="outline">2</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <AIFoodTipModal
-                  title={`What can I do with expired ${name}`}
-                />
-              </DialogContent>
-            </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">2</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <AIFoodTipModal title={`What can I do with expired ${name}?`} />
+            </DialogContent>
+          </Dialog>
 
-            <Dialog>
-              <DialogTrigger>
-                <Button variant="outline">3</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <AIFoodTipModal
-                  title={`How can I keep ${name} fresh`}
-                  name={name}
-                />
-              </DialogContent>
-            </Dialog>
-          </div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">3</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <AIFoodTipModal
+                title={`How can I keep ${name} fresh?`}
+                name={name}
+              />
+            </DialogContent>
+          </Dialog>
         </CardContent>
       </div>
       <CardFooter>
