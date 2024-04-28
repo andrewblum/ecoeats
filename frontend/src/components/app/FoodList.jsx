@@ -40,7 +40,7 @@ function FoodList() {
     fetch('/api/user/1/food')
       .then((resp) => resp.json())
       .then((data) => setFood(data));
-  });
+  }, []);
 
   return (
     <section>
@@ -51,7 +51,7 @@ function FoodList() {
           key={id}
           id={id}
           name={name}
-          exexpirationDatepiry={expirationDate}
+          expirationDate={expirationDate}
           image={content}
         />
       ))}
